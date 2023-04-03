@@ -1,1 +1,0 @@
-# valosweb-nextjs
