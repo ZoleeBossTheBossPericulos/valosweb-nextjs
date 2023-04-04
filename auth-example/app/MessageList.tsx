@@ -30,7 +30,6 @@ function MessageList({ initialMessages }: Props) {
   };
 
   useEffect(() => {
-    console.log("here");
     scrollToMyRef();
     const channel = clientPusher.subscribe("messages");
 
