@@ -24,7 +24,7 @@ const MessageComponent = forwardRef<HTMLDivElement, MessageComponentProps>(
       <div className={`flex w-fit ${isUser && "ml-auto"}`} ref={ref}>
         <div className={`flex-shrink-0 ${isUser && "order-2"}`}>
           <Image
-            className="rounded-full mx-2"
+            className="rounded-full mx-2 mt-3"
             height={10}
             width={50}
             src={message.profilePic}

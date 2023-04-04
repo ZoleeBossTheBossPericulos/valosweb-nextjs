@@ -3,7 +3,7 @@ import React from "react";
 import { Message } from "../typings";
 import ChatInput from "./ChatInput";
 import MessageList from "./MessageList";
-import Providers from "./providers";
+import Providers from "./Providers";
 
 async function HomePage() {
   const data = await fetch(
