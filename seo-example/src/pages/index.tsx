@@ -85,8 +85,8 @@ export default function Home() {
         <Image
           src="/large-image.jpg"
           alt="Large Image"
-          width={1290}
-          height={1882}
+          width={1920}
+          height={2823}
         />
         <Image
           src="/vercel.svg"
