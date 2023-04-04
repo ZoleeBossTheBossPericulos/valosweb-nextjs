@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import LogoutButton from "./LogoutButton";
+import { Session } from "next-auth";
 
 interface HeaderProps {
-  session: any;
+  session: Session | null;
 }
 
 function Header({ session }: HeaderProps) {
