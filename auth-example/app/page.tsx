@@ -12,7 +12,7 @@ async function HomePage() {
 
   const messages: Message[] = data.messages;
   const session = await unstable_getServerSession();
-
+  
   return (
     <Providers session={session}>
       <main>
