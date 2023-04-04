@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef, RefObject } from "react";
 import useSWR from "swr";
 import { clientPusher } from "../pusher";
 import { Message } from "../typings";
@@ -18,7 +18,19 @@ function MessageList({ initialMessages }: Props) {
     mutate,
   } = useSWR<Message[]>("/api/getMessages", fetcher);
 
+  const myRef: RefObject<HTMLDivElement> = useRef(null);
+
+  const scrollToMyRef = () => {
+    if (myRef.current) {
+      myRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   useEffect(() => {
+    scrollToMyRef();
     const channel = clientPusher.subscribe("messages");
 
     channel.bind("new-message", async (data: Message) => {
@@ -41,9 +53,15 @@ function MessageList({ initialMessages }: Props) {
   }, [messages, mutate, clientPusher]);
 
   return (
-    <div className="space-y-5 px-5 pt-8 pb-32 max-w-2xl xl:max-w-4xl mx-auto">
-      {(messages || initialMessages).map((message) => (
-        <MessageComponent key={message.id} message={message} />
+    <div className="space-y-5 px-5 pt-8 pb-32 max-w-2xl xl:max-w-4xl mx-auto flex flex-col-reverse">
+      {(messages || initialMessages).map((message, index) => (
+        <div key={message.id}>
+          {messages && index === 0 ? (
+            <MessageComponent ref={myRef} key={message.id} message={message} />
+          ) : (
+            <MessageComponent key={message.id} message={message} />
+          )}
+        </div>
       ))}
     </div>
   );
